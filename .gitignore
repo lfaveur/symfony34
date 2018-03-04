@@ -15,3 +15,9 @@
 !var/SymfonyRequirements.php
 /vendor/
 /web/bundles/
+composer.lock
+
+.idea/php.xml
+.idea/symfony34.iml
+.idea/symfony2.xml
+.idea/workspace.xml
