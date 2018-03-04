@@ -15,7 +15,26 @@ class DefaultController extends Controller
     {
         // replace this example code with whatever you need
         return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+            'base_dir' => realpath($this->getParameter('kernel.project_dir')) . DIRECTORY_SEPARATOR,
         ]);
+    }
+
+    /**
+     * @Route("/i", name="homepage2")
+     */
+    public function indexBisAction(Request $request)
+    {
+        $data = [
+            [
+                'nom' => 'Faveur',
+                'prenom' => 'Lionel'
+            ],
+            [
+                'nom' => 'Faveur',
+                'prenom' => 'Darida'
+            ],
+        ];
+        // replace this example code with whatever you need
+        return $this->render('beautiful/famille.html.twig', ['data' => $data]);
     }
 }
