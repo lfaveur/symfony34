@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}notre famille{% endblock %}
+
+{% block body %}
+    {% for entry in data %}
+        <p>{{ entry.nom }}</p>
+        <p>{{ entry.prenom }}</p>
+    {% endfor %}
+    <a href="{{ path('app_lucky_number', {}) }}">URL
+    </a>
+{% endblock %}
