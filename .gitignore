@@ -21,3 +21,4 @@ composer.lock
 .idea/symfony34.iml
 .idea/symfony2.xml
 .idea/workspace.xml
+\.idea/
