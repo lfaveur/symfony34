@@ -15,8 +15,16 @@ class LuckyController    extends Controller
      *
      * @return Response
      */
-    public function number()
+    public function number(LoggerInterface $logger)
     {
+        $logger->info('I just got the logger');
+        $logger->error('An error occurred');
+
+        $logger->critical('I left the oven on!', array(
+            // include extra "context" info in your logs
+            'cause' => 'in_hurry',
+        ));
+
         $number = mt_rand(0, 100);
         return $this->render('lucky/number.html.twig', array(
             'number' => $number,
