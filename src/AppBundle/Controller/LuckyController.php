@@ -25,6 +25,10 @@ class LuckyController    extends Controller
             'cause' => 'in_hurry',
         ));
 
+        $tutu = $this->container->get('tutuService');
+
+        dump($tutu->kiki());
+        die;
         $number = mt_rand(0, 100);
         return $this->render('lucky/number.html.twig', array(
             'number' => $number,
