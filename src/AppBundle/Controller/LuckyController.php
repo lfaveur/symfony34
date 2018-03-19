@@ -15,8 +15,30 @@ class LuckyController    extends Controller
      *
      * @return Response
      */
-    public function number()
+    public function number(LoggerInterface $logger)
     {
+        $toto = $this->getDoctrine()->getManager();
+// doctrine !!        dump($toto->getRepository('AppBundle:Product')->findOneBy(['price' => 0]));
+
+        $logger->info('I just got the logger');
+        $logger->error('An error occurred');
+
+        $logger->critical('I left the oven on!', array(
+            // include extra "context" info in your logs
+            'cause' => 'in_hurry',
+        ));
+
+//        $tutu = $this->container->get('tutuService');
+
+//        dump($tutu->kiki());
+//        die;
+
+        //$success = mail('lionel.faveur@gmail.com', 'My Subject', 'message');
+//        if (!$success) {
+//            $errorMessage = error_get_last()['message'];
+//            dump($errorMessage);
+//            die;
+//        }
         $number = mt_rand(0, 100);
         return $this->render('lucky/number.html.twig', array(
             'number' => $number,
