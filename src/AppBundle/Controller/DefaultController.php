@@ -7,6 +7,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use RiotAPI\RiotAPI;
+use RiotAPI\Definitions\Region;
+use DataDragonAPI\DataDragonAPI;
 
 
 class DefaultController extends Controller
@@ -16,6 +19,22 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
+        try {
+            $api = new RiotAPI([
+                //  Your API key, you can get one at https://developer.riotgames.com/
+                RiotAPI::SET_KEY => $this->getParameter('api_key_riot'),
+                //  Target region (you can change it during lifetime of the library instance)
+                RiotAPI::SET_REGION => Region::EUROPE_EAST,
+            ]);
+            dump($api->getStaticChampion(61)); // Orianna <3);
+        }catch(\Exception $e){
+
+        }
+        echo "fesq";
+        echo DataDragonAPI::getChampionLoading('Orianna');
+        echo "fesq";
+
+        die;
         // replace this example code with whatever you need
         return $this->render('default/index.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')) . DIRECTORY_SEPARATOR,
