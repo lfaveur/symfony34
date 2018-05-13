@@ -22,6 +22,11 @@ class Product
     private $name;
 
     /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $dname;
+
+    /**
      * @ORM\Column(type="decimal", scale=2)
      */
     private $price;
@@ -61,6 +66,22 @@ class Product
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDname()
+    {
+        return $this->dname;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function setDname()
+    {
+        return $this->dname;
     }
 
     /**
