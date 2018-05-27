@@ -1,15 +1,19 @@
 <?php
+
 namespace AppBundle\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
+
 /**
- * @ORM\Entity
- * @ORM\Table(name="Theme")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\ThemeRepository")
+ * Medecin
+ *
+ * @ORM\Table(name="medecin")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\MedecinRepository")
  */
-class Theme
+class Medecin
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -25,8 +29,27 @@ class Theme
     private $name;
 
     /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Ville")
+     */
+    private $ville;
+
+
+    /**
+     * Get id.
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name.
+     *
      * @param string $name
-     * @return Theme
+     *
+     * @return Medecin
      */
     public function setName($name)
     {
@@ -36,19 +59,12 @@ class Theme
     }
 
     /**
+     * Get name.
+     *
      * @return string
      */
     public function getName()
     {
         return $this->name;
-    }
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
     }
 }
