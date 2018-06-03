@@ -46,6 +46,25 @@ class LuckyController    extends Controller
     }
 
     /**
+     * @Route("/datafiltered")
+     *
+     * @return string
+     */
+    public function testDataFiltered()
+    {
+        return $this->render('@App/toto.html.twig', []);
+    }
+
+    /**
+     * @Route("/datafiltered2")
+     *
+     * @return string
+     */
+    public function testDataFiltered2()
+    {
+        return $this->render('@App/jqueryDatafiltered.html.twig', []);
+    }
+    /**
      * @Route("/lucky/numberC")
      */
     public function numberCAction()

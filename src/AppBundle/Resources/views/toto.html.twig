@@ -1,0 +1,41 @@
+{% extends "base.html.twig" %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
+{% endblock %}
+{% block body %}
+    <button type="button" class="filter-btn" data-filter="all">All</button>
+
+    <button type="button" class="filter-btn" data-filter=".toto">Toto</button>
+
+    <button type="button" class="filter-btn" data-filter=".tata">TATA</button>
+
+    <div class="portfolios">
+      <div class="toto">
+        TOTO1
+      </div>
+      <div class="toto">
+        TOTO2
+      </div>
+      <div class="tata">
+        TOTO3A
+      </div>
+      <div class="toto tata">
+        TATA1 TOTO4
+      </div>
+      <div class="tata">
+        TATA2
+      </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="{{ asset('js/filter.js') }}"></script>
+    <script>
+        $('.portfolios').filterData({
+            aspectRatio: '18:12',
+        });
+    </script>
+{% endblock %}
