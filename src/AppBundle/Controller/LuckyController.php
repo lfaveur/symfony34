@@ -1,6 +1,7 @@
 <?php
 namespace AppBundle\Controller;
 
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -53,6 +54,36 @@ class LuckyController    extends Controller
     public function testDataFiltered()
     {
         return $this->render('@App/toto.html.twig', []);
+    }
+
+    /**
+     * @Route("/ajaxcall")
+     *
+     * @return string
+     */
+    public function ajaxcall()
+    {
+        return $this->render('@App/ajaxcall.html.twig', []);
+    }
+
+    /**
+     * @Route("/ajaxresponse")
+     *
+     * @return JsonResponse
+     */
+    public function ajaxresponse()
+    {
+        return new JsonResponse([
+            0 => [
+                'nom' => 'toto'
+            ],
+            1 => [
+                'nom' => 'tata'
+            ],
+            2 => [
+                'nom' => 'titi'
+            ],
+        ]);
     }
 
     /**

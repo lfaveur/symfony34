@@ -1,0 +1,39 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <a href="#" id="toto" class="btn btn-primary">gjufdd</a>
+    <div id="jsonresponse">
+
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+    $('#toto').on('click', function () {
+        $( "#jsonresponse" ).empty();
+        var href = "{{ path('app_lucky_ajaxresponse') }}";
+        $.ajax({
+            url: href,
+            dataType: "json",
+            success: function (jsonData) {
+                //end loading
+                console.log('success')
+                console.log(jsonData)
+                jQuery.each( jsonData, function( i, val ) {
+                    $( "#jsonresponse" ).append( "<p><strong>" + val.nom + "</strong></p>" );
+                });
+            },
+
+            error : function(resultat, statut, erreur){
+                //end loading
+                console.log('error')
+            },
+
+            complete : function(resultat, statut){
+                //end loading
+                console.log('complete')
+            }
+        });
+    })
+    </script>
+
+{% endblock %}
