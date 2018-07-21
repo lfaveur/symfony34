@@ -5,3 +5,8 @@ app:
 frontend_livre:
     resource: "@AppBundle/Resources/config/routing/livre.yml"
     prefix:   /livre
+
+app.swagger_ui:
+    path: /api/doc
+    methods: GET
+    defaults: { _controller: nelmio_api_doc.controller.swagger }
