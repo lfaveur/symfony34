@@ -22,7 +22,7 @@ class DefaultController extends Controller
                      /*todo: a service can be done for mailing ! same for geoip*/
 //        $message = (new \Swift_Message('Hello Email'))
 //            ->setFrom('draculadelanochedelavide@gmail.com')
-//            ->setTo('darida.faveur@gmail.com')
+//            ->setTo('lionel.faveur@gmail.com')
 //            ->setBody('un autre test', 'text/html')
 //            /*
 //             * If you also want to include a plaintext version of the message
@@ -37,10 +37,11 @@ class DefaultController extends Controller
 //        ;
 //
 //        try {
-//            $mailer->send($message);
+//            dump($mailer->send($message));
 //        }catch(\Exception $e){
 //            dump($e);
 //        }
+//        die;
 
 //        // Declare the path to the GeoLite2-City.mmdb file (database)
 //        $GeoLiteDatabasePath = $this->get('kernel')->getRootDir() . '/../private/GeoLite2-Country/GeoLite2-Country.mmdb';

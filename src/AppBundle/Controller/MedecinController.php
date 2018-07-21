@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use ReCaptcha\ReCaptcha;
 use AppBundle\Entity\Medecin;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -44,9 +45,15 @@ class MedecinController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($medecin);
-            $em->flush();
+            $reCaptcha = new ReCaptcha($this->getParameter('secret_key'));
+            $reCaptchaResponse = $request->get('g-recaptcha-response');
+            $reCaptchaCheck = $reCaptcha->verify($reCaptchaResponse, $request->getClientIp());
+
+            if ($reCaptchaCheck->isSuccess()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($medecin);
+                $em->flush();
+            }
 
             return $this->redirectToRoute('medecin_show', array('id' => $medecin->getId()));
         }
@@ -54,6 +61,7 @@ class MedecinController extends Controller
         return $this->render('medecin/new.html.twig', array(
             'medecin' => $medecin,
             'form' => $form->createView(),
+            'captchaOwnerKey' => $this->getParameter('site_key')
         ));
     }
 
