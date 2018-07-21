@@ -19,6 +19,8 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request, \Swift_Mailer $mailer)
     {
+        $this->get('monolog.logger.test')->log('error','dgfdgd', []);
+
                      /*todo: a service can be done for mailing ! same for geoip*/
 //        $message = (new \Swift_Message('Hello Email'))
 //            ->setFrom('draculadelanochedelavide@gmail.com')

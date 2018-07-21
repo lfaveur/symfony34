@@ -26,7 +26,16 @@ web_profiler:
 
     # DEPRECATED, it can be removed safely from your configuration
 #    verbose:              true
-    
+
+monolog:
+    channels: ["test"]
+    handlers:
+        test:
+            type:   stream
+            path:   "%kernel.logs_dir%/test.log"
+            level:  debug
+            channels: test
+
 framework:
     #esi: ~
     #translator: { fallbacks: ['%locale%'] }
