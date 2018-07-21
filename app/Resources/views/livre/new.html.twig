@@ -4,6 +4,7 @@
     <h1>Livre creation</h1>
 
     {{ form_start(form) }}
+    {% form_theme form 'jquery.collection.html.twig' %}
         {{ form_widget(form) }}
         <div class="g-recaptcha" data-sitekey="{{ captchaOwnerKey }}"></div>
         <input type="submit" value="Create" />
@@ -17,5 +18,6 @@
 {% endblock %}
 
 {% block javascripts %}
+    {{ parent() }}
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 {% endblock %}

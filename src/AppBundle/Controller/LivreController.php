@@ -3,10 +3,15 @@
 namespace AppBundle\Controller;
 
 
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use ReCaptcha\ReCaptcha;
 use AppBundle\Entity\Livre;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 /**
  * Livre controller.
@@ -27,6 +32,47 @@ class LivreController extends Controller
         return $this->render('livre/index.html.twig', array(
             'livres' => $livres,
         ));
+    }
+
+    /**
+     * A simple collection that even don't use an entity.
+     *
+     * @Route("/simple-collection", name="basic")
+     * @Template()
+     */
+    public function simpleCollectionAction(Request $request)
+    {
+        $data = ['values' => ['a', 'b', 'c']];
+
+        $form = $this
+            ->createFormBuilder($data)
+            ->add('values', CollectionType::class, [
+                'entry_type'    => TextType::class,
+                'entry_options' => [
+                    'label' => 'Value',
+                ],
+                'label'        => 'Add, move, remove values and press Submit.',
+                'allow_add'    => true,
+                'allow_delete' => true,
+                'prototype'    => true,
+                'required'     => false,
+                'attr'         => [
+                    'class' => 'my-selector',
+                ],
+            ])
+            ->add('submit', SubmitType::class)
+            ->getForm()
+        ;
+
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $data = $form->getData();
+        }
+
+        return $this->render('livre/tt.html.twig', [
+            'form' => $form->createView(),
+            'data' => $data,
+        ]);
     }
 
     /**

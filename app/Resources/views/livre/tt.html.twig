@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h2>Basic usage</h2>
+
+    <p>This is a collection of simple text fields using the plugin with all default options.</p>
+
+    {% form_theme form 'jquery.collection.html.twig' %}
+    {{ form(form) }}
+
+    <hr/>
+
+    {% for value in data.values %}
+        <p>Value : {{ value }}</p>
+    {% endfor %}
+
+    <hr/>
+
+{% endblock %}
+
+{% block javascripts %}
+
+                      {{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            $('.my-selector').collection();
+        });
+    </script>
+{% endblock %}
