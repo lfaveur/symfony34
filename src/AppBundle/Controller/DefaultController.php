@@ -3,10 +3,13 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Product;
+use GeoIp2\Database\Reader;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Cookie;
+
 
 
 class DefaultController extends Controller
@@ -14,8 +17,57 @@ class DefaultController extends Controller
     /**
      * @Route("/", name="homepage")
      */
-    public function indexAction(Request $request)
+    public function indexAction(Request $request, \Swift_Mailer $mailer)
     {
+                     /*todo: a service can be done for mailing ! same for geoip*/
+//        $message = (new \Swift_Message('Hello Email'))
+//            ->setFrom('draculadelanochedelavide@gmail.com')
+//            ->setTo('darida.faveur@gmail.com')
+//            ->setBody('un autre test', 'text/html')
+//            /*
+//             * If you also want to include a plaintext version of the message
+//            ->addPart(
+//                $this->renderView(
+//                    'Emails/registration.txt.twig',
+//                    array('name' => $name)
+//                ),
+//                'text/plain'
+//            )
+//            */
+//        ;
+//
+//        try {
+//            $mailer->send($message);
+//        }catch(\Exception $e){
+//            dump($e);
+//        }
+
+//        // Declare the path to the GeoLite2-City.mmdb file (database)
+//        $GeoLiteDatabasePath = $this->get('kernel')->getRootDir() . '/../private/GeoLite2-Country/GeoLite2-Country.mmdb';
+//
+//        // Create an instance of the Reader of GeoIp2 and provide as first argument
+//        // the path to the database file
+//        $reader = new Reader($GeoLiteDatabasePath);
+//
+//        try{
+//            // if you are in the production environment you can retrieve the
+//            // user's IP with $request->getClientIp()
+//            // Note that in a development environment 127.0.0.1 will
+//            // throw the AddressNotFoundException
+//
+//
+//            // In this example, use a fixed IP address in Minnesota
+//            $record = $reader->country('14.0.16.0');
+//            dump($record);
+//            die;
+//        } catch (\Exception $ex) {
+//            // Couldn't retrieve geo information from the given IP
+//            return new Response("It wasn't possible to retrieve information about the providen IP");
+//        }
+//
+//        $this->settoto();
+//        dump($request->cookies,$request->getClientIp());
+//        die;
         // replace this example code with whatever you need
         return $this->render('default/index.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')) . DIRECTORY_SEPARATOR,
@@ -39,6 +91,18 @@ class DefaultController extends Controller
         ];
         // replace this example code with whatever you need
         return $this->render('beautiful/famille.html.twig', ['data' => $data]);
+    }
+
+
+    public function settoto(){
+        $cookie = new Cookie(
+            'my_cookie',    // Cookie name.
+            'ggfgf',    // Cookie value.
+            time() + ( 2 * 365 * 24 * 60 * 60)  // Expires 2 years.
+        );
+        $res = new Response();
+        $res->headers->setCookie( $cookie );
+        $res->send();
     }
 
     public function createAction()
