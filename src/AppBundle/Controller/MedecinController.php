@@ -50,6 +50,8 @@ class MedecinController extends Controller
             $reCaptchaCheck = $reCaptcha->verify($reCaptchaResponse, $request->getClientIp());
 
             if ($reCaptchaCheck->isSuccess()) {
+                dump('gfbgf');
+                die;
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($medecin);
                 $em->flush();

@@ -1,3 +1,7 @@
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
+
+frontend_livre:
+    resource: "@AppBundle/Resources/config/routing/livre.yml"
+    prefix:   /livre

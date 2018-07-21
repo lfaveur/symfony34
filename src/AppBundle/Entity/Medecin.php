@@ -31,7 +31,6 @@ class Medecin
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Ville")
-     * @Assert\NotBlank()
      */
     private $ville;
 
