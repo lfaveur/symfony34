@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Cookie;
+use Cyprus\Hello;
 
 
 
@@ -21,6 +22,11 @@ class DefaultController extends Controller
     {
         $this->get('monolog.logger.test')->log('error','dgfdgd', []);
 
+//        $toto = new Hello\Hello();
+//        dump($toto->say());
+//        die;        $toto = new Hello\Hello();
+//        dump($toto->say());
+//        die;
                      /*todo: a service can be done for mailing ! same for geoip*/
 //        $message = (new \Swift_Message('Hello Email'))
 //            ->setFrom('draculadelanochedelavide@gmail.com')
