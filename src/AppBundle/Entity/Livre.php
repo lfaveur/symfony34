@@ -55,6 +55,13 @@ class Livre
     private $dateParution;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="text", type="text", nullable=true)
+     */
+    private $text;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Auteur", inversedBy="livres")
      */
     private $auteur;
@@ -176,5 +183,29 @@ class Livre
     public function getAuteur()
     {
         return $this->auteur;
+    }
+
+    /**
+     * Set text.
+     *
+     * @param string|null $text
+     *
+     * @return Livre
+     */
+    public function setText($text = null)
+    {
+        $this->text = $text;
+
+        return $this;
+    }
+
+    /**
+     * Get text.
+     *
+     * @return string|null
+     */
+    public function getText()
+    {
+        return $this->text;
     }
 }

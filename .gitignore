@@ -19,3 +19,8 @@
 composer.lock
 
 \.idea/
+/web/uploads/*
+/web/bundles/*
+/web/assets/*
+!web/uploads/.gitkeep
+/composer.phar

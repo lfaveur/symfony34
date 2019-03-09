@@ -17,6 +17,10 @@
                 <th>Dateparution</th>
                 <td>{% if livre.dateParution %}{{ livre.dateParution|date('Y-m-d') }}{% endif %}</td>
             </tr>
+            <tr>
+                <th>Text</th>
+                <td>{{ livre.text|raw }}</td>
+            </tr>
         </tbody>
     </table>
 

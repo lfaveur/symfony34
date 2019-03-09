@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form;
 
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use ReCaptcha\ReCaptcha;
 
 use Symfony\Component\Form\AbstractType;
@@ -19,15 +20,19 @@ class LivreType extends AbstractType
         $builder
             ->add('titre')
             ->add('dateParution')
-            ->add('themes', CollectionType::class,
-                array (
-                    'allow_add' => true,
-                    'prototype' => true,
-                    'attr' => array(
-                        'class' => 'my-selector',
-                    ),
-                )
-            )
+            ->add('text', CKEditorType::class, array(
+                'config_name' => 'my_config',
+                'config'      => array('uiColor' => '#ffffff'),
+            ))
+//            ->add('themes', CollectionType::class,
+//                array (
+//                    'allow_add' => true,
+//                    'prototype' => true,
+//                    'attr' => array(
+//                        'class' => 'my-selector',
+//                    ),
+//                )
+//            )
         ;
     }/**
      * {@inheritdoc}

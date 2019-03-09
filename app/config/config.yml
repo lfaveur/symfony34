@@ -13,19 +13,10 @@ imports:
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: en
+    locale: fr
 
 # app/config/config.yml
-web_profiler:
-    toolbar:              true
-    intercept_redirects:  false
-    excluded_ajax_paths:  ^/(app(_[\\w]+)?\\.php/)?_wdt
 
-    # DEPRECATED, it can be removed safely from your configuration
-    position:             bottom
-
-    # DEPRECATED, it can be removed safely from your configuration
-#    verbose:              true
 
 monolog:
     channels: ["test"]
@@ -64,7 +55,17 @@ twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
     form_themes:
+        - '@FOSCKEditor/Form/ckeditor_widget.html.twig'
         - bootstrap_3_layout.html.twig
+
+fos_ck_editor:
+    configs:
+        my_config:
+            toolbar: full
+            uiColor: "#000000"
+            filebrowserBrowseRoute: elfinder
+            filebrowserUrlRoute: elfinder
+            filebrowserBrowseRouteParameters: []
 
 # Doctrine Configuration
 doctrine:
@@ -98,3 +99,29 @@ swiftmailer:
     password: '%mailer_password%'
     spool: { type: memory }
     transport: gmail
+
+fm_elfinder:
+    #assets_path: / # default is /assets, this is where css/js elfinder files are
+    instances:
+        default:
+            locale: %locale% # defaults to current request locale
+            editor: ckeditor # other options are tinymce, tinymce4, fm_tinymce, form, simple, custom
+            path_prefix: 'http://symfony341.local/' # for setting custom assets path prefix, useful for non vhost configurations, i.e. http://127.0.0.1/mysite/
+            #editor_template: custom template for your editor # default null
+            #path_prefix: / # for setting custom assets path prefix, useful for non vhost configurations, i.e. http://127.0.0.1/mysite/
+            #fullscreen: true|false # default is true, applies to simple and ckeditor editors
+            #theme: smoothness # jquery theme, default is 'smoothness'
+            include_assets: true # disable if you want to manage loading of javascript and css assets manually
+            #visible_mime_types: ['image/png', 'image/jpg', 'image/jpeg'] # only show these mime types, defaults to show all
+            connector:
+                #debug: true|false # defaults to false
+                roots:       # at least one root must be defined, defines root filemanager directories
+                    uploads:
+                        #show_hidden: true|false # defaults to false, hides dotfiles
+                        driver: LocalFileSystem
+                        path: uploads
+                        upload_allow: ['image/png', 'image/jpg', 'image/jpeg']
+                        upload_deny: ['all']
+                        upload_max_size: 2M # also file upload sizes restricted in php.ini
+                        #attributes: example of setting attributes permission
+                        #    - { pattern: '/(.*?)/', read: true, write: false, locked: true }

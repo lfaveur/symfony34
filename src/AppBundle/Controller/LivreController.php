@@ -87,17 +87,17 @@ class LivreController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $reCaptcha = new ReCaptcha($this->getParameter('secret_key'));
-            $reCaptchaResponse = $request->get('g-recaptcha-response');
-            $reCaptchaCheck = $reCaptcha->verify($reCaptchaResponse, $request->getClientIp());
-            if ($reCaptchaCheck->isSuccess()) {
-                dump('gfbgf');
-                die;
+//            $reCaptcha = new ReCaptcha($this->getParameter('secret_key'));
+//            $reCaptchaResponse = $request->get('g-recaptcha-response');
+//            $reCaptchaCheck = $reCaptcha->verify($reCaptchaResponse, $request->getClientIp());
+//            if ($reCaptchaCheck->isSuccess()) {
+//                dump('gfbgf');
+//                die;
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($livre);
                 $em->flush();
                 return $this->redirectToRoute('livre_show', array('id' => $livre->getId()));
-            }
+//            }
 
         }
 

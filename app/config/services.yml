@@ -5,7 +5,9 @@ parameters:
     toto: tata
 services:
     # default configuration for services in *this* file
-
+    AppBundle\DataFixtures\:
+        resource: '../../src/AppBundle/DataFixtures'
+        tags: ['doctrine.fixture.orm']
     tutuService:
         class: AppBundle\Services\Tutu
         arguments: ["@logger"]

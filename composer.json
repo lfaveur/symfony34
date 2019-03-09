@@ -21,8 +21,10 @@
     },
     "require": {
         "php": ">=5.5.9",
+        "helios-ag/fm-elfinder-bundle": "~9",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/orm": "^2.5",
+        "friendsofsymfony/ckeditor-bundle": "^2.0",
         "gedmo/doctrine-extensions": "^2.4",
         "geoip2/geoip2": "^2.9",
         "google/recaptcha": "~1.1",
@@ -61,7 +63,8 @@
         ]
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "component-dir": "web/assets"
     },
     "extra": {
         "symfony-app-dir": "app",

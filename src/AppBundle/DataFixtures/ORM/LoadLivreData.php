@@ -2,12 +2,13 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
+use Doctrine\Bundle\FixturesBundle\ORMFixtureInterface;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use AppBundle\Entity\Livre;
 use AppBundle\Entity\Auteur;
 
-class LoadLivreData implements FixtureInterface
+class LoadLivreData implements ORMFixtureInterface
 {
     public function load(ObjectManager $manager)
     {

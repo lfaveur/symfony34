@@ -4,10 +4,11 @@ namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\Entity\Departement;
 use AppBundle\Entity\Region;
+use Doctrine\Bundle\FixturesBundle\ORMFixtureInterface;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
-class LoadEmbededFiledsData implements FixtureInterface
+class LoadEmbededFiledsData implements ORMFixtureInterface
 {
     public function load(ObjectManager $manager)
     {

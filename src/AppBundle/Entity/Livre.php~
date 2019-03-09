@@ -55,6 +55,13 @@ class Livre
     private $dateParution;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="text", type="text", nullable=true)
+     */
+    private $text;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Auteur", inversedBy="livres")
      */
     private $auteur;

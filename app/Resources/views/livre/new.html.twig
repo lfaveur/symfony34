@@ -6,7 +6,7 @@
     {{ form_start(form) }}
     {% form_theme form 'jquery.collection.html.twig' %}
         {{ form_widget(form) }}
-        <div class="g-recaptcha" data-sitekey="{{ captchaOwnerKey }}"></div>
+        {#<div class="g-recaptcha" data-sitekey="{{ captchaOwnerKey }}"></div>#}
         <input type="submit" value="Create" />
     {{ form_end(form) }}
 
@@ -19,5 +19,5 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    {#<script src="https://www.google.com/recaptcha/api.js" async defer></script>#}
 {% endblock %}
